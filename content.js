@@ -72,10 +72,10 @@ setInterval(() => {
       const buttonContainer = iframe.contentDocument.querySelector(
         ".codepen-button-container"
       );
-      buttonContainer.style.position = "absolute";
+      buttonContainer.style.position = "fixed";
       buttonContainer.style.bottom = "10px";
       buttonContainer.style.right = "10px";
-      buttonContainer.style.zIndex = "1";
+      buttonContainer.style.zIndex = "1000";
 
       // Style the button
       const button = buttonContainer.querySelector(".codepen-button");
