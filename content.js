@@ -1,25 +1,41 @@
 setInterval(() => {
-    document.querySelectorAll(".language-html").forEach(codeSpace => {
-        const existingIframe = codeSpace.querySelector("iframe");
+  document.querySelectorAll(".language-html").forEach((htmlCodeSpace) => {
+    const messageContainer = htmlCodeSpace.closest("[data-message-id]");
+    if (!messageContainer) return; // Skip if no message container is found
 
-        if (!codeSpace.lastChild.tagName || (codeSpace.lastChild.tagName && codeSpace.lastChild.tagName.toLowerCase() !== "iframe")) {
-            if (existingIframe) {
-                existingIframe.remove();
-            }
-        }
+    const messageId = messageContainer.getAttribute("data-message-id");
+    const existingIframe = htmlCodeSpace.querySelector("iframe");
 
-        if(!existingIframe) {
-            const codeContent = codeSpace.innerText;
-            const iframe = document.createElement('iframe');
+    if (
+      !htmlCodeSpace.lastChild.tagName ||
+      (htmlCodeSpace.lastChild.tagName &&
+        htmlCodeSpace.lastChild.tagName.toLowerCase() !== "iframe")
+    ) {
+      if (existingIframe) {
+        existingIframe.remove();
+      }
+    }
 
-            codeSpace.parentElement.style.padding = "0";
-            iframe.style.width = "100%";
-            iframe.style.height = "60vh";
-            iframe.setAttribute('sandbox', 'allow-same-origin allow-scripts');
+    if (!existingIframe) {
+      const htmlContent = htmlCodeSpace.innerText;
+      const iframe = document.createElement("iframe");
 
-            codeSpace.appendChild(iframe);
+      htmlCodeSpace.parentElement.style.padding = "0";
+      iframe.style.width = "100%";
+      iframe.style.height = "60vh";
+      iframe.setAttribute("sandbox", "allow-same-origin allow-scripts");
 
-            iframe.srcdoc = codeContent;
-        }
-    });
+      // Find all CSS code blocks within the same message container and concatenate their content
+      const cssContent = Array.from(
+        messageContainer.querySelectorAll(".language-css")
+      )
+        .map((cssCodeSpace) => `<style>${cssCodeSpace.innerText}</style>`)
+        .join("");
+
+      // Combine HTML and CSS content
+      iframe.srcdoc = cssContent + htmlContent;
+
+      htmlCodeSpace.appendChild(iframe);
+    }
+  });
 }, 2000);
