@@ -26,8 +26,13 @@ setInterval(() => {
     )
       .map((cssCodeSpace) => `<style>${cssCodeSpace.innerText}</style>`)
       .join("");
+    const jsContent = Array.from(
+      messageContainer.querySelectorAll(".language-javascript")
+    )
+      .map((jsCodeSpace) => `<script>${jsCodeSpace.innerText}</script>`)
+      .join("");
 
-    const newContent = cssContent + htmlContent;
+    const newContent = cssContent + htmlContent + jsContent;
 
     if (iframe.srcdoc !== newContent) {
       iframe.srcdoc = newContent;
@@ -41,6 +46,11 @@ setInterval(() => {
         css: Array.from(messageContainer.querySelectorAll(".language-css"))
           .map((cssCodeSpace) => cssCodeSpace.innerText)
           .join(""),
+        js: Array.from(
+          messageContainer.querySelectorAll(".language-javascript")
+        )
+          .map((jsCodeSpace) => jsCodeSpace.innerText)
+          .join(""),
       };
 
       const JSONstring = JSON.stringify(data)
@@ -48,13 +58,13 @@ setInterval(() => {
         .replace(/'/g, "&apos;");
 
       const form = `
-          <div class="codepen-button-container">
-            <form action="https://codepen.io/pen/define" method="POST" target="_blank">
-              <input type="hidden" name="data" value='${JSONstring}'>
-              <input type="submit" value="Edit on CodePen" class="codepen-button">
-            </form>
-          </div>
-        `;
+                    <div class="codepen-button-container">
+                        <form action="https://codepen.io/pen/define" method="POST" target="_blank">
+                            <input type="hidden" name="data" value='${JSONstring}'>
+                            <input type="submit" value="Edit on CodePen" class="codepen-button">
+                        </form>
+                    </div>
+                `;
 
       iframe.contentDocument.body.insertAdjacentHTML("beforeend", form);
 
@@ -87,4 +97,3 @@ setInterval(() => {
     }
   });
 }, 2000);
-
