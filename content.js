@@ -1,24 +1,29 @@
 (function() {
+  const updateInterval = 2000;
   setInterval(() => {
-    document.querySelectorAll(".language-html").forEach((htmlCodeSpace) => {
-      const messageContainer = htmlCodeSpace.closest("[data-message-id]");
-      if (!messageContainer) return;
+    try {
+      document.querySelectorAll(".language-html").forEach((htmlCodeSpace) => {
+        const messageContainer = htmlCodeSpace.closest("[data-message-id]");
+        if (!messageContainer) return;
 
-      let iframe = messageContainer.querySelector("iframe");
-      if (!iframe) {
-        iframe = document.createElement("iframe");
-        setupIframe(iframe);
-        messageContainer.appendChild(iframe);
-      }
+        let iframe = messageContainer.querySelector("iframe");
+        if (!iframe) {
+          iframe = document.createElement("iframe");
+          setupIframe(iframe);
+          messageContainer.appendChild(iframe);
+        }
 
-      const newContent = prepareContent(messageContainer);
-      if (iframe.srcdoc !== newContent) {
-        iframe.srcdoc = newContent;
-      }
+        const newContent = prepareContent(messageContainer);
+        if (iframe.srcdoc !== newContent) {
+          iframe.srcdoc = newContent;
+        }
 
-      addEditOnCodePenButton(iframe, messageContainer);
-    });
-  }, 2000);
+        addEditOnCodePenButton(iframe, messageContainer);
+      });
+    } catch (error) {
+      console.error("Error updating content in iframes:", error);
+    }
+  }, updateInterval);
 
   function setupIframe(iframe) {
     Object.assign(iframe.style, {
@@ -30,7 +35,7 @@
   }
 
   function prepareContent(container) {
-    const htmlContent = container.querySelector(".language-html").innerText;
+    const htmlContent = container.querySelector(".language-html")?.innerText || '';
     const cssContent = Array.from(container.querySelectorAll(".language-css"))
       .map(css => `<style>${css.innerText}</style>`)
       .join("");
@@ -43,9 +48,9 @@
 
   function addEditOnCodePenButton(iframe, container) {
     let codepenButton = iframe.contentDocument.querySelector(".codepen-button");
-    if (!codepenButton) {
+    if (!codepenButton && iframe.contentDocument.body) {
       const data = {
-        html: container.querySelector(".language-html").innerText,
+        html: container.querySelector(".language-html")?.innerText || '',
         css: Array.from(container.querySelectorAll(".language-css"))
           .map(css => css.innerText)
           .join(""),
@@ -75,16 +80,17 @@
   function styleCodePenButton(doc) {
     const buttonContainer = doc.querySelector(".codepen-button-container");
     Object.assign(buttonContainer.style, {
-      position: "fixed", bottom: "10px", right: "10px", zIndex: "1000"
+      position: "fixed", bottom: "10px", right: "10px", zIndex: "1000",
+      backdropFilter: "blur(4px)", backgroundColor: "rgba(255, 255, 255, 0.1)"
     });
     const button = buttonContainer.querySelector(".codepen-button");
     Object.assign(button.style, {
-      padding: "8px 12px", backgroundColor: "#0a0a23",
-      color: "#fff", border: "none", borderRadius: "4px",
+      padding: "8px 12px", backgroundColor: "rgba(10, 10, 35, 0.6)",
+      color: "#fff", border: "1px solid rgba(255, 255, 255, 0.2)", borderRadius: "4px",
       cursor: "pointer", transition: "background-color 0.3s ease"
     });
-    button.addEventListener("mouseover", () => button.style.backgroundColor = "#1a1a3a");
-    button.addEventListener("mouseout", () => button.style.backgroundColor = "#0a0a23");
+    button.addEventListener("mouseover", () => button.style.backgroundColor = "rgba(26, 26, 58, 0.8)");
+    button.addEventListener("mouseout", () => button.style.backgroundColor = "rgba(10, 10, 35, 0.6)");
   }
 
 })();
