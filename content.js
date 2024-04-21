@@ -27,15 +27,11 @@
 
   function setupIframe(iframe) {
     Object.assign(iframe.style, {
-      width: "100%", border: "none",
+      width: "100%", height: "400px", border: "none",
       borderRadius: "5px", boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
       position: "relative"
     });
     iframe.setAttribute("sandbox", "allow-forms allow-modals allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation allow-downloads allow-presentation");
-    iframe.onload = function() {
-      // Adjust the height based on the content of the iframe plus an additional 40 pixels
-      iframe.style.height = `${iframe.contentWindow.document.body.scrollHeight + 40}px`;
-    };
   }
 
   function prepareContent(container) {
@@ -62,11 +58,11 @@
           .map(js => js.innerText)
           .join("")
       };
-  
+
       const JSONstring = JSON.stringify(data)
         .replace(/"/g, "&quot;")
         .replace(/'/g, "&apos;");
-  
+
       const form = `
         <div class="codepen-button-container">
           <form action="https://codepen.io/pen/define" method="POST" target="_blank">
@@ -75,12 +71,9 @@
           </form>
         </div>
       `;
-  
+
       iframe.contentDocument.body.insertAdjacentHTML("beforeend", form);
       styleCodePenButton(iframe.contentDocument);
-  
-      // Update the iframe height after adding new content
-      iframe.style.height = `${iframe.contentWindow.document.body.scrollHeight + 40}px`;
     }
   }
 
@@ -101,4 +94,3 @@
   }
 
 })();
-
