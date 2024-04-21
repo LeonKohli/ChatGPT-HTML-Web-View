@@ -1,28 +1,61 @@
 (function() {
   const updateInterval = 2000;
-  setInterval(() => {
-    try {
-      document.querySelectorAll(".language-html").forEach((htmlCodeSpace) => {
-        const messageContainer = htmlCodeSpace.closest("[data-message-id]");
-        if (!messageContainer) return;
+  let isEnabled = true;
 
-        let iframe = messageContainer.querySelector("iframe");
-        if (!iframe) {
-          iframe = document.createElement("iframe");
-          setupIframe(iframe);
-          messageContainer.appendChild(iframe);
-        }
+  // Function to clear all iframes
+  function clearIframes() {
+    document.querySelectorAll("iframe.added-by-extension").forEach(iframe => {
+      iframe.parentNode.removeChild(iframe);
+    });
+  }
 
-        const newContent = prepareContent(messageContainer);
-        if (iframe.srcdoc !== newContent) {
-          iframe.srcdoc = newContent;
-        }
+  // Function to initialize or update iframes
+  function initializeIframes() {
+    document.querySelectorAll(".language-html").forEach((htmlCodeSpace) => {
+      const messageContainer = htmlCodeSpace.closest("[data-message-id]");
+      if (!messageContainer) return;
 
-        addEditOnCodePenButton(iframe, messageContainer);
-      });
-    } catch (error) {
-      console.error("Error updating content in iframes:", error);
+      let iframe = messageContainer.querySelector("iframe.added-by-extension");
+      if (!iframe) {
+        iframe = document.createElement("iframe");
+        iframe.className = "added-by-extension"; // Mark the iframe so we can identify it later
+        setupIframe(iframe);
+        messageContainer.appendChild(iframe);
+      }
+
+      const newContent = prepareContent(messageContainer);
+      if (iframe.srcdoc !== newContent) {
+        iframe.srcdoc = newContent;
+      }
+
+      addEditOnCodePenButton(iframe, messageContainer);
+    });
+  }
+
+  // Listen for changes in the isEnabled state
+  browser.storage.onChanged.addListener(changes => {
+    if (changes.isEnabled) {
+      isEnabled = changes.isEnabled.newValue;
+      if (isEnabled) {
+        initializeIframes();
+      } else {
+        clearIframes();
+      }
     }
+  });
+
+  // Initial check and setup
+  browser.storage.local.get(['isEnabled'], function(result) {
+    isEnabled = result.isEnabled !== false; // Default to true if not set
+    if (isEnabled) {
+      initializeIframes();
+    }
+  });
+
+  // Regular interval to check and update iframes if enabled
+  setInterval(() => {
+    if (!isEnabled) return;
+    initializeIframes();
   }, updateInterval);
 
   function setupIframe(iframe) {
@@ -81,7 +114,7 @@
     const buttonContainer = doc.querySelector(".codepen-button-container");
     Object.assign(buttonContainer.style, {
       position: "fixed", bottom: "10px", right: "10px", zIndex: "1000",
-      backdropFilter: "blur(4px)", backgroundColor: "rgba(255, 255, 255, 0.1)"
+      backdropFilter: "blur(4px)", backgroundColor:       "rgba(255, 255, 255, 0.1)"
     });
     const button = buttonContainer.querySelector(".codepen-button");
     Object.assign(button.style, {
@@ -94,3 +127,4 @@
   }
 
 })();
+   

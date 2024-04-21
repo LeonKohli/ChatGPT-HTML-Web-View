@@ -10,23 +10,23 @@
   "author": "JdM",
   "homepage_url": "https://www.rmbi.ch/jdm",
   "browser_specific_settings": {
-      "gecko": {
-          "id": "chatgptwebpreview@example.com"
-      }
+    "gecko": {
+      "id": "chatgptwebpreview@example.com"
+    }
   },
   "action": {
-      "default_title": "ChatGPT Web Preview",
-      "default_popup": "popup.html"
+    "default_title": "ChatGPT Web Preview",
+    "default_popup": "popup.html"
   },
   "content_scripts": [
-      {
-          "js": [
-            "content.js"
-          ],
-          "matches": [
-            "*://*.chat.openai.com/*"
-          ],
-          "run_at": "document_idle"
-      }
+    {
+      "js": [
+        "content.js"
+      ],
+      "matches": [
+        "*://*.chat.openai.com/*"
+      ],
+      "run_at": "document_idle"
+    }
   ]
 }
