@@ -2,6 +2,10 @@
   "manifest_version": 3,
   "name": "ChatGPT Web Preview",
   "description": "Preview HTML, CSS, and JS code from ChatGPT.",
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
   "version": "1.1",
   "author": "JdM",
   "homepage_url": "https://www.rmbi.ch/jdm",
