@@ -16,7 +16,12 @@
   },
   "action": {
     "default_title": "ChatGPT Web Preview",
-    "default_popup": "popup.html"
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/logo16.png",
+      "48": "icons/logo48.png",
+      "128": "icons/logo128.png"
+    }
   },
   "content_scripts": [
     {
