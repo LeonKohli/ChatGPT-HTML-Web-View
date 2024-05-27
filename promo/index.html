@@ -99,6 +99,7 @@
       justify-content: center;
       gap: 20px;
       margin-top: 20px;
+      flex-wrap: wrap;
     }
 
     .badge {
@@ -122,6 +123,23 @@
     .badge:hover {
       transform: translateY(-3px);
       box-shadow: 0 6px 8px var(--hover-shadow-color);
+    }
+
+    @media screen and (max-width: 768px) {
+      .badge-container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .badge {
+        width: 60%;
+        justify-content: center;
+        margin-bottom: 10px;
+      }
+
+      .badge span {
+        text-align: center;
+      }
     }
 
     main {
@@ -242,6 +260,19 @@
       grid-template-rows: repeat(3, auto);
       gap: 20px;
       justify-content: center;
+    }
+
+    @media screen and (max-width: 768px) {
+      .gallery {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+      }
+
+      .gallery-item.wide,
+      .gallery-item.tall {
+        grid-column: auto;
+        grid-row: auto;
+      }
     }
 
     .gallery-item {
@@ -440,15 +471,15 @@
         <a href="https://chromewebstore.google.com/detail/chatgpt-web-preview/didmdeafjnnkgjkfalkkdhmgoajjnpom"
           class="badge">
           <img src="/images/chrome.svg" alt="Get it on Chrome Web Store">
-          Get it on Chrome
+          <span>Get it on Chrome</span>
         </a>
         <a href="https://microsoftedge.microsoft.com/addons" class="badge">
           <img src="/images/edge.svg" alt="Get it on Microsoft Edge Add-ons">
-          Get it on Edge
+          <span>Get it on Edge</span>
         </a>
         <a href="https://addons.mozilla.org/en-US/firefox" class="badge">
           <img src="/images/firefox.svg" alt="Get it on Firefox Add-ons">
-          Get it on Firefox
+          <span>Get it on Firefox</span>
         </a>
       </div>
     </section>
