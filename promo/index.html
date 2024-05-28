@@ -254,7 +254,7 @@
       box-shadow: 0 6px 8px var(--hover-shadow-color);
     }
 
-    .gallery {
+    .gallery-desktop {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       grid-template-rows: repeat(3, auto);
@@ -262,16 +262,19 @@
       justify-content: center;
     }
 
+    .gallery-mobile {
+      display: none;
+    }
+
     @media screen and (max-width: 768px) {
-      .gallery {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto;
+      .gallery-desktop {
+        display: none;
       }
 
-      .gallery-item.wide,
-      .gallery-item.tall {
-        grid-column: auto;
-        grid-row: auto;
+      .gallery-mobile {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
       }
     }
 
@@ -323,11 +326,11 @@
       font-size: 16px;
     }
 
-    .gallery-item.wide {
+    .gallery-desktop .gallery-item.wide {
       grid-column: 1 / span 3;
     }
 
-    .gallery-item.tall {
+    .gallery-desktop .gallery-item.tall {
       grid-row: 2 / span 2;
       grid-column: 3;
     }
@@ -516,44 +519,77 @@
     </section>
 
     <section class="gallery">
-      <div class="gallery-item wide">
-        <img src="/images/image2.png" alt="Screenshot 2">
-        <div class="gallery-item-overlay">
-          <h3>CodePen Integration</h3>
-          <p>Launch your code with a click</p>
+      <div class="gallery-desktop">
+        <div class="gallery-item wide">
+          <img src="/images/image2.png" alt="Screenshot 2">
+          <div class="gallery-item-overlay">
+            <h3>CodePen Integration</h3>
+            <p>Launch your code with a click</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="/images/image1.png" alt="Screenshot 1">
+          <div class="gallery-item-overlay">
+            <h3>Turn it on and off</h3>
+            <p>Use the icon to turn it off/on</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="/images/image3.png" alt="Screenshot 3">
+          <div class="gallery-item-overlay">
+            <h3>Live Code Preview</h3>
+            <p>Experience your code in real-time</p>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="/images/image4.png" alt="Screenshot 4">
+          <div class="gallery-item-overlay">
+            <h3>Create Anything</h3>
+            <p>Display every HTML/CSS or JavaScript</p>
+          </div>
+        </div>
+        <div class="gallery-item tall">
+          <img src="/images/image5.png" alt="Screenshot 5">
+          <div class="gallery-item-overlay">
+            <h3>Inside of ChatGPT</h3>
+            <p>Sleek design directly in Chat</p>
+          </div>
+        </div>
+        <div class="gallery-item screens-card">
+          <i class="fas fa-desktop"></i>
+          <h3>Screenshots</h3>
         </div>
       </div>
-      <div class="gallery-item">
-        <img src="/images/image1.png" alt="Screenshot 1">
-        <div class="gallery-item-overlay">
-          <h3>Turn it on and off</h3>
-          <p>Use the icon to turn it off/on</p>
+
+      <div class="gallery-mobile">
+        <div class="gallery-item">
+          <img src="/images/image2.png" alt="Screenshot 2">
+          <div class="gallery-item-overlay">
+            <h3>CodePen Integration</h3>
+            <p>Launch your code with a click</p>
+          </div>
         </div>
-      </div>
-      <div class="gallery-item">
-        <img src="/images/image3.png" alt="Screenshot 3">
-        <div class="gallery-item-overlay">
-          <h3>Live Code Preview</h3>
-          <p>Experience your code in real-time</p>
+        <div class="gallery-item">
+          <img src="/images/image1.png" alt="Screenshot 1">
+          <div class="gallery-item-overlay">
+            <h3>Turn it on and off</h3>
+            <p>Use the icon to turn it off/on</p>
+          </div>
         </div>
-      </div>
-      <div class="gallery-item">
-        <img src="/images/image4.png" alt="Screenshot 4">
-        <div class="gallery-item-overlay">
-          <h3>Create Anything</h3>
-          <p>Display every HTML/CSS or JavaScript</p>
+        <div class="gallery-item">
+          <img src="/images/image3.png" alt="Screenshot 3">
+          <div class="gallery-item-overlay">
+            <h3>Live Code Preview</h3>
+            <p>Experience your code in real-time</p>
+          </div>
         </div>
-      </div>
-      <div class="gallery-item tall">
-        <img src="/images/image5.png" alt="Screenshot 5">
-        <div class="gallery-item-overlay">
-          <h3>Inside of ChatGPT</h3>
-          <p>Sleek design directly in Chat</p>
+        <div class="gallery-item">
+          <img src="/images/image4.png" alt="Screenshot 4">
+          <div class="gallery-item-overlay">
+            <h3>Create Anything</h3>
+            <p>Display every HTML/CSS or JavaScript</p>
+          </div>
         </div>
-      </div>
-      <div class="gallery-item screens-card">
-        <i class="fas fa-desktop"></i>
-        <h3>Screenshots</h3>
       </div>
     </section>
 
