@@ -416,6 +416,18 @@
       text-align: center;
       color: #aaa;
     }
+
+
+    section {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    section.animate {
+      opacity: 1;
+      transform: translateY(0);
+    }
   </style>
 </head>
 
@@ -455,14 +467,14 @@
     </svg>
   </div>
 
-  <section>
-    <a href="#" class="app-icon">
-      <img src="/images/logo48.png" alt="ChatGPT HTML Web View Extension">
-    </a>
-    <a href="https://github.com/your-repo" class="github-link">
-      <i class="fab fa-github"></i> View on GitHub
-    </a>
-  </section>
+
+  <a href="" class="app-icon">
+    <img src="/images/logo48.png" alt="ChatGPT HTML Web View Extension">
+  </a>
+  <a href="https://github.com/LeonKohli/ChatGPT-HTML-Web-View" class="github-link">
+    <i class="fab fa-github"></i> View on GitHub
+  </a>
+
   <main>
     <section class="hero">
       <h2>ChatGPT Web Preview</h2>
@@ -594,55 +606,62 @@
       </div>
     </section>
 
-    <section class="faq">
+    <section class="faq" itemscope itemtype="https://schema.org/FAQPage">
       <h2>FAQ</h2>
-      <div class="faq-item">
-        <div class="faq-question">How do I install the ChatGPT HTML Web View Extension?</div>
-        <div class="faq-answer">
-          <p>Installation is very simple. Just visit the Chrome Web Store or the Firefox Add-ons Repository, search for
+      <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <div class="faq-question" itemprop="name">How do I install the ChatGPT HTML Web View Extension?</div>
+        <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">Installation is very simple. Just visit the Chrome Web Store or the Firefox Add-ons
+            Repository, search for
             "ChatGPT HTML Web View" and click "Add to Chrome" or "Add to Firefox".</p>
         </div>
       </div>
-      <div class="faq-item">
-        <div class="faq-question">Does the extension work with other browsers?</div>
-        <div class="faq-answer">
-          <p>Currently, we support Google Chrome and Mozilla Firefox. We are working to make the extension available for
+      <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <div class="faq-question" itemprop="name">Does the extension work with other browsers?</div>
+        <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">Currently, we support Google Chrome and Mozilla Firefox. We are working to make the
+            extension available for
             other browsers as well.</p>
         </div>
       </div>
-      <div class="faq-item">
-        <div class="faq-question">What features does the ChatGPT HTML Web View Extension offer?</div>
-        <div class="faq-answer">
-          <p>The extension provides live previews of HTML, CSS, and JavaScript code snippets, seamless integration with
+      <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <div class="faq-question" itemprop="name">What features does the ChatGPT HTML Web View Extension offer?</div>
+        <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">The extension provides live previews of HTML, CSS, and JavaScript code snippets, seamless
+            integration with
             the ChatGPT interface, automatic updates for new code snippets, CodePen integration, and a customizable
             appearance.</p>
         </div>
       </div>
-      <div class="faq-item">
-        <div class="faq-question">How do live code previews work?</div>
-        <div class="faq-answer">
-          <p>The extension automatically detects and renders HTML, CSS, and JavaScript code blocks in real-time,
+      <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <div class="faq-question" itemprop="name">How do live code previews work?</div>
+        <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">The extension automatically detects and renders HTML, CSS, and JavaScript code blocks in
+            real-time,
             allowing you to see your code come to life as you type.</p>
         </div>
       </div>
-      <div class="faq-item">
-        <div class="faq-question">Can I contribute to the development of the extension?</div>
-        <div class="faq-answer">
-          <p>Yes, we welcome contributions from the community. You can fork the repository on GitHub, create a new
+      <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <div class="faq-question" itemprop="name">Can I contribute to the development of the extension?</div>
+        <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">Yes, we welcome contributions from the community. You can fork the repository on GitHub,
+            create a new
             branch for your feature or bug fix, make your changes, and submit a pull request.</p>
         </div>
       </div>
-      <div class="faq-item">
-        <div class="faq-question">How can I report bugs or request new features?</div>
-        <div class="faq-answer">
-          <p>If you encounter any bugs or have suggestions for new features, please open an issue on the GitHub
+      <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <div class="faq-question" itemprop="name">How can I report bugs or request new features?</div>
+        <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">If you encounter any bugs or have suggestions for new features, please open an issue on the
+            GitHub
             repository. Provide as much detail as possible to help us understand and address your request.</p>
         </div>
       </div>
-      <div class="faq-item">
-        <div class="faq-question">What is the license for the ChatGPT HTML Web View Extension?</div>
-        <div class="faq-answer">
-          <p>The extension is open-source software licensed under the MIT license. You are free to use, modify, and
+      <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <div class="faq-question" itemprop="name">What is the license for the ChatGPT HTML Web View Extension?</div>
+        <div class="faq-answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">The extension is open-source software licensed under the MIT license. You are free to use,
+            modify, and
             distribute the extension in accordance with the terms of the license.</p>
         </div>
       </div>
@@ -659,6 +678,28 @@
         const faqItem = question.parentElement;
         faqItem.classList.toggle('active');
       });
+    });
+
+    const sections = document.querySelectorAll('section');
+
+    const observerOptions = {
+      root: null,
+      threshold: 0.1,
+    };
+
+    const observerCallback = (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate');
+          observer.unobserve(entry.target);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    sections.forEach((section) => {
+      observer.observe(section);
     });
   </script>
 </body>
