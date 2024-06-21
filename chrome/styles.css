@@ -2,26 +2,23 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #282c34;
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    height: 100vh;
+    background-color: #2b2a33;
 }
 
 .container {
-    background-color: #3a3f47;
+    background-color: #2b2a33;
     text-align: center;
     width: 350px;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
     margin-bottom: 20px;
-    font-size: 24px;
-    color: #f9f9fb;
-    font-weight: 600;
+    font-size: 22px;
+    color:  #f9f9fb;
+}
+h1 a {
+    color: white; /* Set the color to white */
+    text-decoration: none; /* Remove underline from the link */
 }
 
 .toggle {
@@ -81,20 +78,15 @@ input:checked + .slider:before {
 
 footer p {
     font-size: 14px;
-    color: #e0e0e6;
+    color:  #e0e0e6;
     margin-top: 20px;
 }
 
 footer a {
-    color: #1e90ff;
+    color: #0060df;
     text-decoration: none;
-    font-weight: 500;
 }
 
 footer a:hover {
     text-decoration: underline;
-}
-
-footer a:active {
-    color: #f9f9fb;
 }
