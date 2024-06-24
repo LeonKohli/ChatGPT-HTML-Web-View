@@ -7,15 +7,22 @@
     "storage"
   ],
   "version": "1.1",
-  "author": "JdM",
-  "homepage_url": "https://www.rmbi.ch/jdm",
+  "author": "leonkohli",
+  "homepage_url": "https://gptview.leonkohli.dev/",
   "action": {
     "default_title": "ChatGPT Web Preview",
     "default_popup": "popup.html",
     "default_icon": {
-      "16": "icons/logo16.png",
-      "48": "icons/logo48.png",
-      "128": "icons/logo128.png"
+      "16": "assets/logo16.png",
+      "32": "assets/logo32.png",
+      "48": "assets/logo48.png",
+      "128": "assets/logo128.png"
+    },
+    "icons": {
+      "16": "assets/logo16.png",
+      "32": "assets/logo32.png",
+      "48": "assets/logo48.png",
+      "128": "assets/logo128.png"
     }
   },
   "content_scripts": [
@@ -24,7 +31,8 @@
         "content.js"
       ],
       "matches": [
-        "*://*.chat.openai.com/*"
+        "*://*.chat.openai.com/*",
+        "*://*.chatgpt.com/*"
       ],
       "run_at": "document_idle"
     }
