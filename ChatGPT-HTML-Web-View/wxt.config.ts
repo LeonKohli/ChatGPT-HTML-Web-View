@@ -12,12 +12,6 @@ export default defineConfig({
       default_title: "ChatGPT Web Preview",
       default_popup: "popup.html",
     },
-    icons: {
-      16: "assets/logo16.png",
-      32: "assets/logo32.png",
-      48: "assets/logo48.png",
-      128: "assets/logo128.png",
-    },
     content_scripts: [
       {
         js: ["content.ts"],
