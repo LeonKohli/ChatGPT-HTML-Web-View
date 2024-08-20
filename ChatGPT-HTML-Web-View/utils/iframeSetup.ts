@@ -10,7 +10,7 @@ export function setupIframe(iframe: HTMLIFrameElement) {
   iframe.setAttribute("sandbox", "allow-scripts allow-forms allow-popups allow-same-origin allow-modals");
 }
 
-export function updateIframeContent(iframe: HTMLIFrameElement, container: Element) {
+export function updateIframeContent(iframe: HTMLIFrameElement, container: Element, isCodePenEnabled: boolean) {
   const content = prepareContent(container);
   iframe.setAttribute('data-content', content);
   
@@ -21,6 +21,8 @@ export function updateIframeContent(iframe: HTMLIFrameElement, container: Elemen
   
   iframe.onload = () => {
     URL.revokeObjectURL(blobUrl);
-    addEditOnCodePenButton(iframe, container);
+    if (isCodePenEnabled) {
+      addEditOnCodePenButton(iframe, container);
+    }
   };
 }

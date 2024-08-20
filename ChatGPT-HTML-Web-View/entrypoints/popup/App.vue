@@ -2,14 +2,20 @@
 import { ref, onMounted } from 'vue';
 
 const isEnabled = ref(true);
+const isCodePenEnabled = ref(true);
 
 onMounted(async () => {
-  const result = await browser.storage.local.get('isEnabled');
+  const result = await browser.storage.local.get(['isEnabled', 'isCodePenEnabled']);
   isEnabled.value = result.isEnabled !== false;
+  isCodePenEnabled.value = result.isCodePenEnabled !== false;
 });
 
 function togglePreview() {
   browser.storage.local.set({ isEnabled: isEnabled.value });
+}
+
+function toggleCodePen() {
+  browser.storage.local.set({ isCodePenEnabled: isCodePenEnabled.value });
 }
 </script>
 
@@ -20,6 +26,13 @@ function togglePreview() {
       <span class="toggle-label">Enable Preview</span>
       <label class="switch">
         <input type="checkbox" v-model="isEnabled" @change="togglePreview">
+        <span class="slider round"></span>
+      </label>
+    </div>
+    <div class="toggle-container">
+      <span class="toggle-label">Enable CodePen Button</span>
+      <label class="switch">
+        <input type="checkbox" v-model="isCodePenEnabled" @change="toggleCodePen">
         <span class="slider round"></span>
       </label>
     </div>
@@ -34,121 +47,3 @@ function togglePreview() {
     </footer>
   </div>
 </template>
-
-<style scoped>
-.container {
-  width: 300px;
-  padding: 24px;
-  text-align: center;
-  font-family: Arial, sans-serif;
-  background-color: #f5f5f5;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-  font-size: 24px;
-  margin-bottom: 24px;
-  color: #333;
-}
-
-.toggle-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 24px;
-  background-color: white;
-  padding: 12px;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.toggle-label {
-  font-size: 16px;
-  color: #555;
-}
-
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 52px;
-  height: 28px;
-}
-
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  transition: .4s;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 20px;
-  width: 20px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  transition: .4s;
-}
-
-input:checked+.slider {
-  background-color: #4CAF50;
-}
-
-input:focus+.slider {
-  box-shadow: 0 0 1px #4CAF50;
-}
-
-input:checked+.slider:before {
-  transform: translateX(24px);
-}
-
-.slider.round {
-  border-radius: 28px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
-}
-
-footer {
-  margin-top: 24px;
-}
-
-.github-link {
-  display: inline-flex;
-  align-items: center;
-  color: #333;
-  text-decoration: none;
-  font-size: 14px;
-  padding: 8px 16px;
-  background-color: white;
-  border-radius: 20px;
-  transition: all 0.3s ease;
-}
-
-.github-link:hover {
-  background-color: #333;
-  color: white;
-}
-
-.github-icon {
-  margin-right: 8px;
-}
-
-.github-link:hover .github-icon {
-  fill: white;
-}
-</style>
