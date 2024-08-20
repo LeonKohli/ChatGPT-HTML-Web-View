@@ -53,6 +53,13 @@ h1 {
   color: var(--color-text);
 }
 
+.description {
+  font-size: var(--font-size-small);
+  color: var(--color-text-secondary);
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+
 .toggle-container {
   display: flex;
   justify-content: space-between;
@@ -136,11 +143,6 @@ footer {
   background-color: var(--color-card-bg);
   border-radius: 20px;
   transition: all var(--transition-duration) ease;
-}
-
-.github-link:hover {
-  background-color: var(--color-text);
-  color: var(--color-bg);
 }
 
 .github-icon {

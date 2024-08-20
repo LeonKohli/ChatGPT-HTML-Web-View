@@ -22,6 +22,9 @@ function toggleCodePen() {
 <template>
   <div class="container">
     <h1>ChatGPT Web Preview</h1>
+    <p class="description">
+      Enhance your ChatGPT experience with live HTML previews and easy CodePen integration.
+    </p>
     <div class="toggle-container">
       <span class="toggle-label">Enable Preview</span>
       <label class="switch">
