@@ -1,0 +1,32 @@
+{
+  "name": "chatgpt-web-preview",
+  "description": "Preview HTML, CSS, and JS code from ChatGPT.",
+  "private": true,
+  "version": "1.1",
+  "type": "module",
+  "scripts": {
+    "dev": "wxt",
+    "dev:firefox": "wxt -b firefox",
+    "build": "wxt build",
+    "build:firefox": "wxt build -b firefox",
+    "zip": "wxt zip",
+    "zip:firefox": "wxt zip -b firefox",
+    "compile": "vue-tsc --noEmit",
+    "postinstall": "wxt prepare"
+  },
+  "dependencies": {
+    "vue": "^3.4.34"
+  },
+  "devDependencies": {
+    "@wxt-dev/module-vue": "^1.0.0",
+    "typescript": "^5.5.4",
+    "vue-tsc": "^2.0.29",
+    "wxt": "^0.19.1"
+  },
+  "webExt": {
+    "permissions": [
+      "activeTab",
+      "storage"
+    ]
+  }
+}
