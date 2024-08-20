@@ -13,11 +13,19 @@ export function prepareContent(container: Element) {
     <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <script src="${browser.runtime.getURL('tailwind.min.js')}"></script>
       <style>${cssContent}</style>
     </head>
     <body>
       ${htmlContent}
       <script type="module">${jsContent}</script>
+      <script>
+        tailwind.config = {
+          corePlugins: {
+            preflight: false,
+          }
+        }
+      </script>
     </body>
     </html>
   `;

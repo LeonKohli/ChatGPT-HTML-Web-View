@@ -3,9 +3,9 @@ import { defineConfig } from 'wxt';
 export default defineConfig({
   manifest: {
     name: "ChatGPT Web Preview",
-    description: "Preview HTML, CSS, and JS code from ChatGPT.",
+    description: "Preview HTML, CSS, and JS code from ChatGPT with Tailwind CSS support.",
     permissions: ["activeTab", "storage"],
-    version: "1.1",
+    version: "1.2",
     author: "leonkohli",
     homepage_url: "https://gptview.leonkohli.dev/",
     action: {
@@ -20,6 +20,12 @@ export default defineConfig({
           "*://*.chatgpt.com/*"
         ],
       },
+    ],
+    web_accessible_resources: [
+      {
+        resources: ["tailwind.min.js"],
+        matches: ["<all_urls>"]
+      }
     ],
   },
   modules: ['@wxt-dev/module-vue'],
